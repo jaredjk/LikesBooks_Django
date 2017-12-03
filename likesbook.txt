@@ -1,0 +1,81 @@
+
+
+In [3]: User.objects.create(name="jred")
+Out[3]: <User object: jred>
+
+In [4]: User.objects.create(name="Dann")
+Out[4]: <User object: Dann>
+
+In [5]: User.objects.create(name="Jimm")
+Out[5]: <User object: Jimm>
+
+In [7]: u1 = User.objects.get(id=1)
+
+In [8]: u2 = User.objects.get(id=2)
+
+In [9]: u3 = User.objects.get(id=3)
+
+In [12]: Book.objects.create(bname="book1", uploader=u1)
+Out[12]: <Book object: book1>
+
+In [13]: Book.objects.create(bname="book2", uploader=u1)
+Out[13]: <Book object: book2>
+
+In [14]: Book.objects.create(bname="book3", uploader=u2)
+Out[14]: <Book object: book3>
+
+In [15]: Book.objects.create(bname="book3", uploader=u2)
+Out[15]: <Book object: book3>
+
+In [16]: Book.objects.create(bname="book4", uploader=u3)
+Out[16]: <Book object: book4>
+
+In [17]: Book.objects.create(bname="book5", uploader=u3)
+Out[17]: <Book object: book5>
+
+In [18]: Book.objects.all()
+Out[18]: <QuerySet [<Book object: book1>, <Book object: book2>, <Book object: book3>, <Book object: book3>, <Book object: book4>, <Book object: book5>]>
+
+In [19]: b1 = Book.objects.get(id=1)
+
+In [20]: b2 = Book.objects.get(id=2)
+
+In [21]: b3 = Book.objects.get(id=3)
+
+In [22]: b4 = Book.objects.get(id=4)
+
+In [23]: b5 = Book.objects.get(id=5)
+
+In [24]: b6 = Book.objects.get(id=6)
+
+In [26]: b1.liked_users.add(u1)
+
+In [27]: b6.liked_users.add(u1)
+
+In [28]: b1.liked_users.add(u2)
+
+In [29]: b3.liked_users.add(u2)
+
+In [30]: b1.liked_users.add(u3)
+
+In [31]: b2.liked_users.add(u3)
+
+In [32]: b3.liked_users.add(u3)
+
+In [33]: b4.liked_users.add(u3)
+
+In [34]: b5.liked_users.add(u3)
+
+In [35]: b6.liked_users.add(u3)
+
+In [37]: b1.liked_users.all()
+Out[37]: <QuerySet [<User object: jred>, <User object: Dann>, <User object: Jimm>]>
+
+In [38]: b1.uploader.name
+Out[38]: u'jred'
+
+In [39]: b2.liked_users.all()
+Out[39]: <QuerySet [<User object: Jimm>]>
+
+In [40]: b2.uploader.name
+Out[40]: u'jred'
